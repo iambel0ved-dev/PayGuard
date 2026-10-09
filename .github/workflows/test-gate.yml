@@ -1,0 +1,38 @@
+name: Test Gate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  quality-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run contract tests
+        run: pytest tests/contract/ -v --tb=short
+
+      - name: Run integration tests
+        run: pytest tests/integration/ -v --tb=short
+
+      - name: Run E2E tests
+        run: pytest tests/e2e/ -v --tb=short
+
+      - name: Generate HTML report
+        run: pytest tests/ --html=reports/report.html --self-contained-html
+
+      - name: Upload report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: reports/report.html
