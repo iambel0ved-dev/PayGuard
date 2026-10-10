@@ -11,6 +11,16 @@ A comprehensive test automation framework for payment platforms, covering API, D
 - `mock_server/` — Mock payment gateway for isolated testing
 - `reports/` — Generated test reports
 
+## Walkthrough Video
+
+<p align="center">
+  <video src="https://github.com/iambel0ved-dev/PayGuard/raw/main/payguard_walkthrough.mp4" controls width="720"></video>
+</p>
+
+▶ [Watch: payguard_walkthrough.mp4](payguard_walkthrough.mp4)
+
+A real-execution walkthrough of the full suite: project layout → mock payment gateway health check → contract, integration & E2E test suites (10 tests) → 20-user Locust load test against the charge API → HTML test-report generation. Every command in the video actually runs.
+
 ## Quick Start
 ```bash
 python3 -m venv .venv
